@@ -2,16 +2,14 @@ package lab1_ASD;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
 
-public class RSACypher {
+public class RSACypher extends AbstractCypher {
 
-    private Cipher cypher;
     private KeyPair keyRing;
 
-    public RSACypher() throws Throwable {
+    public RSACypher() throws Exception {
         super();
 
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
@@ -19,16 +17,16 @@ public class RSACypher {
 
         keyRing = keyGen.generateKeyPair();
 
-        cypher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        this.setCypher(Cipher.getInstance("RSA/ECB/PKCS1Padding"));
     }
 
-    public byte[] encrypt(byte[] plainText) throws Throwable {
-        cypher.init(Cipher.ENCRYPT_MODE, keyRing.getPublic());
-        return cypher.doFinal(plainText);
+    public byte[] encrypt(byte[] plainText) throws Exception {
+        super.setKey(keyRing.getPublic());
+        return super.encrypt(plainText);
     }
 
-    public byte[] decrypt(byte[] cypherText) throws Throwable {
-        cypher.init(Cipher.DECRYPT_MODE, keyRing.getPrivate());
-        return cypher.doFinal(cypherText);
+    public byte[] decrypt(byte[] cypherText) throws Exception {
+        super.setKey(keyRing.getPrivate());
+        return super.decrypt(cypherText);
     }
 }
