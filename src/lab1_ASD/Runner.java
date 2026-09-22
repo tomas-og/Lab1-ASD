@@ -2,11 +2,13 @@ package lab1_ASD;
 
 public class Runner {
 
-    void main() throws Exception {
+    void main() throws Throwable {
         var text = "Attack the castle wall at dawn!";
+        
+        var fact = CypherFactory.getInstance();
+        Cypherable cypher = fact.getCypherable(Algorithm.DES);
 
-        RSACypher cypher = new RSACypher();
-        var encrypted = cypher.encrypt(text.getBytes("UTF-8"));
+        byte[] encrypted = cypher.encrypt(text.getBytes("UTF-8"));
 
         System.out.println(new String(encrypted));
         System.out.println(new String(cypher.decrypt(encrypted)));

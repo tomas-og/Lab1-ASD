@@ -10,7 +10,7 @@ public class DESCypher extends AbstractCypher {
 
         KeyGenerator keyGen = KeyGenerator.getInstance("DES");
         keyGen.init(56);
-        super.setKey(getKey());
+        super.setKey(keyGen.generateKey());
         super.setCypher(Cipher.getInstance("DES/ECB/PKCS5Padding"));
     }
 }
