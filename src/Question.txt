@@ -1,0 +1,8 @@
+Explain the impact that this action has on the 
+overall design of the application.
+
+Adding Cypher Factory seperates creating cyphers
+from the rest of the code. This means you can add 
+new cyphers without changing the runner which 
+makes it easier to maintain and add more cyphers
+in the future.
